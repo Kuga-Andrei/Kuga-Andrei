@@ -1,6 +1,6 @@
 print("Program starting.\n")
 Word = input("Insert a closed compound word: ")
-print(f"The word you inserted is \'{Word}\' and is reverse it is \'{Word[::-1]}\'.")
+print(f"The word you inserted is \'{Word}\' and in reverse it is \'{Word[::-1]}\'.")
 print(f"The inserted word length is {len(Word)}")
 print(f"Last character is '{Word[-1]}'\n")
 print("Take substring from the inserted word by inserting...")
