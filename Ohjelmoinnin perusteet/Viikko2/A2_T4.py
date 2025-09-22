@@ -8,8 +8,7 @@ T5 = int(input("A1_T5: "))
 T6 = int(input("A1_T6: "))
 T7 = int(input("A1_T7: "))
 Total = T1 + T2 + T3 + T4 + T5 + T6 + T7
-Average = round(Total / 7, 2)
-Nearest = round(Total / 7)
+Average = Total / 7
 print(f"\nIn total you spent {Total} minutes on programming.")
-print(f"Average time spent per exercise is {Average} min and same rounded to the nearest integer {Nearest} min.\n")
+print(f"Average time spent per exercise is {round(Average,2)} min and same rounded to the nearest integer {round(Average)} min.\n")
 print("Program ending.")
