@@ -19,9 +19,14 @@ step = 0
 while len(number) > 1:
     step += 1
     result = 1
+    kierros = 0
     for digit in number:
         result *= int(digit)
-        print(f"{digit} *", end=" ")
+        kierros += 1
+        if kierros == len(number):
+            print(digit, end=" ")
+        else:
+            print(digit, end=" * ")
     print(f"= {result}")
     number = str(result)
 print("No more steps.\n")
