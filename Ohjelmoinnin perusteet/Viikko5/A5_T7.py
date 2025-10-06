@@ -41,10 +41,12 @@ def analyseWords(PWords):
     Words = len(AWords)
     Characters = sum(len(Word) for Word in AWords)
     Avg = Characters / Words
-    print(f'- {Words} Words')
+    if Characters == 0:
+        print("- 0 Words")
+    else:
+        print(f'- {Words} Words')
     print(f'- {Characters} Characters')
     print("- {:.2f} Average word length".format(Avg))
-
 
 def main():
     print("Program starting.")
