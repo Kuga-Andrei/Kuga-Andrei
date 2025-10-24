@@ -88,7 +88,20 @@ LOWER_ALPHABETS = "abcdefghijklmnopqrstuvwxyz"
 UPPER_ALPHABETS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def read_progress():
-    pass
+    try:
+        with open("player_progress.txt", "r") as f:
+            for line in (f.readlines() [-1:]):
+                progres_data = line.split(';')
+            progres_data[0] = int(progres_data[0])
+            progres_data[1] = int(progres_data[1])
+            progres_data[2] = progres_data[2].strip()
+        return progres_data
+    except FileNotFoundError:
+        with open("player_progress.txt", "w") as f:
+            f.write("current_location;next_location;passphrase\n")
+            f.write("0;1;qvfpvcyvar")
+            progres_data = [0,1,"qvfpvcyvar"]
+            return progres_data
 
 def shiftCharacter(Character, Alphabets, Shift: int = 13):
     shifted_Alphabets = ''
@@ -107,17 +120,53 @@ def rot13(Content):
             shifted_Content += shiftCharacter(i, LOWER_ALPHABETS)
     return shifted_Content
 
-def locate_message(next_location, passphrase):
-    pass
+def locate_message(next_location, pass_phrase):
+    filename = f"{next_location}_{pass_phrase}.gkg"
+    with open(filename, "r") as file:
+            content = file.read()
+            lines = content.strip().split('\n')
+            new_progress = lines[0]
+            message = '\n'.join(lines[1:])
+            return new_progress, message
 
-def append_progress(current_location, next_location, passphrase):
-    pass
+def append_progress(progress_data):
+    with open('player_progress.txt', 'a') as f:
+        f.write('\n'+progress_data)
 
-def save_plain(next_location, plain_passphrase, plain_message):
-    pass
+def save_plain(progress_data, plain_passphrase, plain_message):
+    filename = f"{progress_data}-{plain_passphrase}.txt"
+    with open(filename, "w") as f:
+        f.write(plain_message)
 
 def main():
-    pass
+    print("Travel starting.")
+    progress = read_progress()
+    if progress[1] == 5:
+        print('All locations visited.')
+        return
+    else:
+        print(f"Currently at {LOCATIONS[progress[0]]}.")
+        print(f"Travelling to {LOCATIONS[progress[1]]}...")
+        print(f"...Arriving to the {LOCATIONS[progress[1]]}.")
+
+    print("Passing the guard at the entrance.")
+    plain_passphrase = rot13(progress[2])
+    print(f'"{plain_passphrase.capitalize()}!"')
+
+    print("Looking for the message in the palace...")
+    next_progress, message = locate_message(progress[1], progress[2])
+    print("Ah, there it is! Seems cryptic.")
+
+    append_progress(next_progress)
+    print("[Game] Progress autosaved!")
+
+    print("Deciphering Emperor's message...")
+    plain_message = rot13(message)
+    print("Looks like I've got now the plain version copy of the Emperor's message.")
+    save_plain(progress[1], plain_passphrase, plain_message)
+
+    print("Time to leave...")
+    print("Travel ending.")
 
 if __name__ == "__main__":
     main()
