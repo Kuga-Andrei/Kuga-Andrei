@@ -12,9 +12,15 @@
 # #### START "{filename}" ####
 # #### END "{filename}" ####
 
+########################
+from pathlib import Path
+#Tämän avulla ohjelma voi löytää avattavan tiedoston
+ROOT_DIR = Path(__file__).parent
+########################
 def read_file(PFileName):
     print(f'#### START "{PFileName}" ####')
-    File = open(PFileName)
+    Text_File = ROOT_DIR / 'Tekstitiedostot' / PFileName #Tarkentaa tiedoston sijainnin, etsii avattavan tiedoston kansiosta Tekstitiedostot
+    File = open(Text_File)
     while True:
         line = File.readline()
         if line == "":
