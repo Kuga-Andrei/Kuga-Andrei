@@ -21,7 +21,7 @@
 
 
 import hashlib
-DELIMETER = ';'
+DELIMITER = ';'
 CREDENTIALS = 'credentials.txt'
 
 def showOptions() -> None:
@@ -61,10 +61,10 @@ def askUser(PPrompt: str = 'Insert value') -> str:
     return value
 
 def authentication(user: str, password: str) -> bool:
-    hex_password = hashlib.md5(b"password").hexdigest()
+    hex_password = hashlib.md5(password.encode()).hexdigest()
     with open(CREDENTIALS, "r") as f:
         for line in f:
-            line = line.strip().split(DELIMETER)
+            line = line.strip().split(DELIMITER)
             if line[1] == user:
                 if line[2] == hex_password:
                     return True

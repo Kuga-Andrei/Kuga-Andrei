@@ -51,7 +51,7 @@ def readFile(PFilename: str, PRows: list[str]) -> None:
     for row in f:
         if row == '\n':
             continue
-        PRows.append(row.rstrip('\n'))
+        PRows.append(row.strip('\n'))
     f.close()
     return PRows
 
