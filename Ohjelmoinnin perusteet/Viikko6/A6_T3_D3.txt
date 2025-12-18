@@ -1,4 +1,0 @@
-Item,Price,Stock
-Laptop,899.99,36
-Mouse,19.99,44
-Keyboard,29.99,55

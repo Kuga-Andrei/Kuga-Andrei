@@ -1,6 +1,0 @@
-current_location;next_location;passphrase
-0;1;qvfpvcyvar
-1;2;bgub
-2;3;ivgryyvhf
-3;4;irfcnfvna
-4;5;pbzcyrgr
